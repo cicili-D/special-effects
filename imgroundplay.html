@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:cadetblue;
+            margin:0;
+            padding:0;
+        }
+        #eyes{
+            width:100%;
+            position:absolute;
+            transform:translateY(-50%);
+            top:50%;
+            text-align:center;
+            margin:0;
+            /* background:cornsilk; */
+        }
+        .eye{
+            width:200px;
+            height:100px;
+            background:#fff;
+            border-radius:50%;
+            display:inline-block;
+            margin:40px;
+            overflow:hidden;
+            position:relative;
+            
+        }
+        .ball{
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background:black;
+            border:15px solid rgb(39, 39, 58);
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="eyes">
+        <div class="eye">
+            <div class="ball"></div>
+        </div>
+        <div class="eye">
+            <div class="ball"></div>
+        </div>
+    </div>
+
+    <script>
+        var balls = document.getElementsByClassName("ball");
+        document.onmousemove = function(){
+            var x = event.clientX * 100 / window.innerWidth + "%";
+            var y = event.clientY * 100 / window.innerHeight + "%";
+
+            for(var i=0; i<2;i++){
+                balls[i].style.left = x;
+                balls[i].style.top = y;
+                balls[i].style.transform = "translate(-"+x+",-"+y+")";
+            }
+
+        }
+
+        
+        // 做笔记
+
+        // （1）event指事件  event.clientX =>事件的x坐标  horizontal coordinate 水平坐标
+        //                  event.clientY =>事件的y坐标  vertical coordinate 垂直坐标
+        // （2）window.innerHeight/Width => 浏览器窗口的高和宽
+        // （3）getElenetsByClassName 可获得数组，就是多个元素
+        //      querySelector 只能获取一个元素
+        // （4）margin 的 50% 指的是：父元素 宽度 的50%
+        //     top和left、right、bottom的50% 指的是其父元素的宽高。子元素的上(下、左、右)边到父元素上(下、左、右)边的距离
+        //     transform:translate 里的 50% 指的是元素自己的宽高
+    </script> 
+</body>
+</html>
